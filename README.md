@@ -1,6 +1,13 @@
 This is a repo for [Bag of Words Meets Bags of Popcorn](https://www.kaggle.com/c/word2vec-nlp-tutorial) on [Kaggle](https://www.kaggle.com/)
 
-### Pre-processing
+# Experiment Flow
+
+* Pre-processing
+* Generate word2vec data
+* Train a CNN model for classification
+* Predict testing data
+
+## Pre-processing
 
 * observe data format
 * statistics
