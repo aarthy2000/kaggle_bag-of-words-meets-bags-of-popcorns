@@ -7,6 +7,7 @@ This is a repo for [Bag of Words Meets Bags of Popcorn](https://www.kaggle.com/c
 * Train a CNN model for classification
 * Predict testing data
 
+
 ## Pre-processing
 
 * observe data format
@@ -14,21 +15,19 @@ This is a repo for [Bag of Words Meets Bags of Popcorn](https://www.kaggle.com/c
 * data cleaning
 * word2vec
 
-
 ### Pre-processing steps of data cleaning
 
 1. Remove the " character at the start/end of review
 1. Replace \\" to "
-1. Replace multiple <br /> to space character
+1. Replace multiple \<br \/\> to space character
 1. Tokenize the whole review (article)
 1. Lemmatize all words
-
 
 ### Steps of generating word2vec files
 
 1. Remove the " character at the start/end of review
 1. Replace \\" to "
-1. Replace multiple <br /> to space character
+1. Replace multiple \<br \/\> to space character
 1. Split sentences from review (article)
 1. Tokenize all sentences
 1. Lemmatize all words
