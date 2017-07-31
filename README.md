@@ -2,13 +2,13 @@ This is a repo for [Bag of Words Meets Bags of Popcorn](https://www.kaggle.com/c
 
 # Experiment Flow
 
-* Pre-processing
+* Data pre-processing
 * Generate word2vec data
 * Train a CNN model for classification
 * Predict testing data
 
 
-## Pre-processing
+## Data pre-processing
 
 * observe data format
 * statistics
