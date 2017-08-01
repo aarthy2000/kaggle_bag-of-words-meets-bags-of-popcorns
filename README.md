@@ -3,8 +3,8 @@ This is a repo for [Bag of Words Meets Bags of Popcorn](https://www.kaggle.com/c
 # Experiment Flow
 
 * Data pre-processing
-* Generate word2vec data
-* Train a CNN model for classification
+* Generate [word2vec](https://code.google.com/archive/p/word2vec/) data
+* Train a [CNN model](http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/)  for text classification
 * Predict testing data
 
 
