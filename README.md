@@ -42,7 +42,7 @@ This is a repo for [Bag of Words Meets Bags of Popcorn](https://www.kaggle.com/c
 ### preprocessing
 
 1. Split data into training set and validation set
-1. Indexing all words in word2vec
-1. Indexing all the words reviews in training data and validation data
+1. Index all words in word2vec
+1. Encode all the words of reviews in training data and validation data
 
 

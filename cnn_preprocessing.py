@@ -1,4 +1,5 @@
 import random
+import re
 from corpus_loader import load_training_data
 
 
@@ -39,6 +40,36 @@ def indexing_w2v(w2v_file_path, word_dict_path):
             dict_out.write(str(index) + '\t' + word + '\n')
 
 
+def encode_data(data_path, word_dict_path, encoded_data_path):
+    data_lines = load_training_data(data_path)
+
+    # load word dict and make dict
+    word_dict = dict()
+    with open(word_dict_path, 'r', encoding='utf8') as word_dict_in:
+        lines = [line.strip().split('\t') for line in word_dict_in]
+    for index, word in lines:
+        word_dict[word] = index
+
+    output_lines = list()
+    for id, sentiment, review in data_lines:
+        line = id + '\t' + sentiment + '\t'
+        assert len(review) > 0, 'len(review) is {}'.format(len(review))
+        review_sentences = re.split('(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|!)\s', review)  # split to sentences
+        for sentence in review_sentences:
+            for word in sentence.split(' '):
+                if word not in word_dict:
+                    word = '[__OOV__]'
+                line += word_dict[word] + ' '
+            # padding between two sentences
+            line += word_dict['[__PAD__]'] + ' '
+        line = line.strip()
+        line += '\n'
+        output_lines.append(line)
+
+    with open(encoded_data_path, 'w', encoding='utf8', newline='\n') as encode_out:
+        encode_out.writelines(output_lines)
+
+
 if __name__ == '__main__':
     # # generate validation set
     # data_path = 'dataOutput/labeledTrainData_clean.tsv'
@@ -47,10 +78,17 @@ if __name__ == '__main__':
     # output_file_prefix = 'labeledTrainData_clean'
     # generate_validation_set(data_path, split_ratio, output_dir, output_file_prefix)
 
-    # indexing all words in word2vec
-    w2v_file_path = 'data/word2vec/labeledTrainData_sentences_word2vec.txt'
+    # # indexing all words in word2vec
+    # w2v_file_path = 'data/word2vec/labeledTrainData_sentences_word2vec.txt'
+    # word_dict_path = 'data/word2vec/word_dict.txt'
+    # indexing_w2v(w2v_file_path, word_dict_path)
+
+    # encode all the words of reviews in training data and validation data
+    data_path = 'dataOutput/validation/labeledTrainData_clean_validation.tsv'
     word_dict_path = 'data/word2vec/word_dict.txt'
-    indexing_w2v(w2v_file_path, word_dict_path)
+    encoded_data_path = 'dataOutput/validation/labeledTrainData_clean_validation_encoded.tsv'
+    encode_data(data_path, word_dict_path, encoded_data_path)
+
 
 
 
