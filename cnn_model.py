@@ -87,7 +87,6 @@ class TextCNNModel(object):
                                     padding="VALID",
                                     name="conv_%s" % filter_size)
                 conv_out = tf.nn.bias_add(conv, b)
-
                 print(conv_out)
 
                 # Apply nonlinearity
@@ -107,14 +106,8 @@ class TextCNNModel(object):
 
         # Combine all the pooled features
         num_filters_total = num_each_filter * len(filter_sizes)
-        print(num_filters_total)
-        print(pooled_outputs)
         self.h_pool = tf.concat(pooled_outputs, 3)
         print(self.h_pool)
-        print('The shape of self.h_pool is {shape}'.format(shape=tf.shape(self.h_pool)))
-        print('The first size of self.h_pool is {dimension} (dimension=tf.shape(self.h_pool)[0])'.format(dimension=tf.shape(self.h_pool)[0]))
-        print('The first size of self.h_pool is {dimension} (self.h_pool.get_shape().as_list())'.format(dimension=self.h_pool.get_shape().as_list()))
-        # self.h_pool_flat = tf.reshape(self.h_pool, [tf.shape(self.h_pool)[0], num_filters_total])
         self.h_pool_flat = tf.reshape(self.h_pool, [-1, num_filters_total])
         print(self.h_pool_flat)
 
