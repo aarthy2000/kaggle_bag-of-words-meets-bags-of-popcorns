@@ -2,20 +2,20 @@ This is a repo for [Bag of Words Meets Bags of Popcorn](https://www.kaggle.com/c
 
 # Experiment Flow
 
-* Data pre-processing
+* Data preprocessing
 * Generate [word2vec](https://code.google.com/archive/p/word2vec/) data
 * Train a [CNN model](http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/)  for text classification
 * Predict testing data
 
 
-## Data pre-processing
+## Data preprocessing
 
-* observe data format
-* statistics
-* data cleaning
+* Observe data format
+* Statistics
+* Data cleaning
 * word2vec
 
-### Pre-processing steps of data cleaning
+### Preprocessing steps of data cleaning
 
 1. Remove the " character at the start/end of review
 1. Replace \\" to "
@@ -23,7 +23,7 @@ This is a repo for [Bag of Words Meets Bags of Popcorn](https://www.kaggle.com/c
 1. Tokenize the whole review (article)
 1. Lemmatize all words
 
-### Steps of generating word2vec files
+### Preprocessing steps of generating word2vec files
 
 1. Remove the " character at the start/end of review
 1. Replace \\" to "
@@ -31,3 +31,18 @@ This is a repo for [Bag of Words Meets Bags of Popcorn](https://www.kaggle.com/c
 1. Split sentences from review (article)
 1. Tokenize all sentences
 1. Lemmatize all words
+
+
+## Convolution Neural Network (CNN) Model
+
+1. Preprocessing for CNN training data
+1. Training model
+1. Test model by validation set
+1. Find out a good model
+1. Generate predict by the good model
+
+### preprocessing for CNN training data
+
+1. Split data into training set and validation set
+1. Index all words in word2vec
+1. Encode all the words of reviews in training data and validation data

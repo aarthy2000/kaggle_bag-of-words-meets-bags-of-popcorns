@@ -1,4 +1,5 @@
 from corpus_loader import load_training_data
+from corpus_loader import load_testing_data
 
 
 def count_label(file_path):
@@ -21,20 +22,31 @@ def count_label(file_path):
     print(neg_count)  # 12500
 
 
-def max_min_length(file_path):
-    lines = load_training_data(file_path=file_path)
-
+def max_min_length(review_lines):
     max_length = -1
     min_length = 999999
 
-    for id, sentiment, review in lines:
-        max_length = max(max_length, len(review))
-        min_length = min(min_length, len(review))
+    for review in review_lines:
+        review_word_length = len(review.split(' '))
+        max_length = max(max_length, review_word_length)
+        min_length = min(min_length, review_word_length)
 
-    print('max length of review is {}'.format(max_length))  # max length of review is 13710
-    print('min length of review is {}'.format(min_length))  # min length of review is 6
+    print('max length of review is {}'.format(max_length))
+    print('min length of review is {}'.format(min_length))
+    # dataOutput/labeledTrainData_clean.tsv
+    # max length of review is 2738 (words)
+    # min length of review is 11 (words)
+
+    # dataOutput/testData_clean.tsv
+    # WARNING: test
+    # max length of review is 2595 (words)
+    # min length of review is 8 (words)
 
 
 if __name__ == '__main__':
     # count_label('data/labeledTrainData.tsv')
-    max_min_length('data/labeledTrainData.tsv')
+
+    file_path = 'dataOutput/labeledTrainData_clean.tsv'
+    lines = load_training_data(file_path=file_path)
+    # lines = load_testing_data(file_path=file_path)
+    max_min_length(review_lines=[line[-1] for line in lines])

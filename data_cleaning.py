@@ -1,7 +1,7 @@
 import re
 import nltk
 from nltk.stem import WordNetLemmatizer
-from corpus_loader import *
+from corpus_loader import load_training_data
 nltk.data.path.append('nltk_data/')
 
 
