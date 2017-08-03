@@ -14,7 +14,7 @@ from cnn_corpus_loader import *
 
 # set train & test file path
 dict_path = 'data/word2vec/word_dict.txt'
-train_path = 'dataOutput/validation/labeledTrainData_clean_training_encoded.txt'
+train_path = 'dataOutput/validation/labeledTrainData_clean_training_encoded.tsv'
 
 
 def get_batch(x, y, batch_size=batch_size):

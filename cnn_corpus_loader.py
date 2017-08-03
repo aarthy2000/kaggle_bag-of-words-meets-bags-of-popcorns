@@ -137,7 +137,7 @@ def get_corpus_hist(filename):
 if __name__ == '__main__':
     # set train & test file path
     dict_path = 'data/word2vec/word_dict.txt'
-    train_path = 'dataOutput/validation/labeledTrainData_clean_training_encoded.txt'
+    train_path = 'dataOutput/validation/labeledTrainData_clean_training_encoded.tsv'
     max_sequence_length = 3000
     random_seed = 1337
 
