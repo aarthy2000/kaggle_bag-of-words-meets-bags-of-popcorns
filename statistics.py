@@ -28,13 +28,14 @@ def max_min_length(file_path):
     min_length = 999999
 
     for id, sentiment, review in lines:
-        max_length = max(max_length, len(review))
-        min_length = min(min_length, len(review))
+        review_words = review.split(' ')
+        max_length = max(max_length, len(review_words))
+        min_length = min(min_length, len(review_words))
 
-    print('max length of review is {}'.format(max_length))  # max length of review is 13710
-    print('min length of review is {}'.format(min_length))  # min length of review is 6
+    print('max length of review is {}'.format(max_length))  # max length of review is 2738 (words)
+    print('min length of review is {}'.format(min_length))  # min length of review is 11 (words)
 
 
 if __name__ == '__main__':
     # count_label('data/labeledTrainData.tsv')
-    max_min_length('data/labeledTrainData.tsv')
+    max_min_length('dataOutput/labeledTrainData_clean.tsv')
