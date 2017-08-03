@@ -38,11 +38,11 @@ This is a repo for [Bag of Words Meets Bags of Popcorn](https://www.kaggle.com/c
 1. Preprocessing for CNN training data
 1. Training model
 1. Test model by validation set
+1. Find out a good model
+1. Generate predict by the good model
 
-### preprocessing
+### preprocessing for CNN training data
 
 1. Split data into training set and validation set
 1. Index all words in word2vec
 1. Encode all the words of reviews in training data and validation data
-
-
