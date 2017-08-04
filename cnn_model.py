@@ -9,7 +9,7 @@ import tensorflow as tf
 
 
 random_seed = 1337
-embedding_dim = 200
+embedding_dim = 300
 filter_sizes = '2,3,4,5,6,7'  # WARNING: must be same as max(legal_template_sizes) backup 2,3,4,5,6,7
 num_filters = 128  # 128
 l2_reg_lambda = 0.2
