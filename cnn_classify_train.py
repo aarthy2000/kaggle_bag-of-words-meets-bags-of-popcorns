@@ -109,7 +109,7 @@ with tf.Graph().as_default():
         if not os.path.exists(checkpoint_dir):
             os.makedirs(checkpoint_dir)
 
-        saver = tf.train.Saver(max_to_keep=30)
+        saver = tf.train.Saver(max_to_keep=100)
 
         # Initialize all variables
         sess.run(tf.global_variables_initializer())
