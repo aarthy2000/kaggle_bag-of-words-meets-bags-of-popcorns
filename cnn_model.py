@@ -16,7 +16,7 @@ l2_reg_lambda = 0.2
 dropout_keep_prob = 0.5
 batch_size = 32
 num_epochs = 100
-word2vec_path = None  # 'data/word2vec/labeledTrainData_sentences_word2vec.txt'
+word2vec_path = 'data/word2vec/labeledTrainData_sentences_word2vec.txt'  # 'data/word2vec/labeledTrainData_sentences_word2vec.txt'
 evaluate_every = 5000
 max_sequence_length = 3000
 

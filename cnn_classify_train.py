@@ -29,6 +29,27 @@ def get_batch(x, y, batch_size=batch_size):
         yield batch_x, batch_y
 
 
+def get_embedding_W(num_vocalbulary, token_to_index):
+    # initial matrix with random uniform
+    init_W = np.random.uniform(-0.25, 0.25, (num_vocalbulary, FLAGS.embedding_dim))
+    # set the '[__PAD__]' to 0.0
+    init_W[0] = [float(0)] * FLAGS.embedding_dim
+
+    # load every vectors from the word2vec
+    print('Load word2vec file "{}"'.format(FLAGS.word2vec_path))
+    with open(FLAGS.word2vec_path, 'r', encoding='utf8') as vec_in:
+        lines = [line.strip() for line in vec_in]
+    for line in lines:
+        word, vectors = line.split(' ', 1)
+        # skip first line
+        if len(vectors) < 100:
+            continue
+        vectors = [float(x) for x in vectors.split(' ')]
+        init_W[token_to_index[word]] = vectors
+    print('Load word2vec completely!')
+    return init_W
+
+
 def log_settings(out_dir):
     print('Start to log the settings...')
     with open(out_dir + '/settings.txt', 'w', encoding='utf8') as log_out:
@@ -95,25 +116,9 @@ with tf.Graph().as_default():
 
         # Assign pre-trained word2vec and template filter weight
         if FLAGS.word2vec_path:
-            print('developing...')
-            # # initial matrix with random uniform
-            # initW = np.random.uniform(-0.25, 0.25, (len(train_vocabulary), FLAGS.embedding_dim))
-            # # set the '[__PAD__]' to 0.0
-            # initW[0] = [float(0)] * FLAGS.embedding_dim
-            #
-            # word2vec_dict = dict()  # word: vectors
-            #
-            # # load every vectors from the word2vec
-            # print('Load word2vec file "{}"'.format(FLAGS.word2vec_path))
-            # with open(FLAGS.word2vec_path, 'r', encoding='utf8') as vec_in:
-            #     lines = [line.strip() for line in vec_in.readlines()]
-            # for line in lines:
-            #     word, vectors = line.split()
-            #     vectors = [float(x) for x in vectors.split(',')]
-            #     initW[train_token_to_index[word]] = vectors
-            #     word2vec_dict[word] = vectors
-            # print('Load word2vec completely!\nStart to assign initW to cnn.W')
-            # sess.run(cnn.W.assign(initW))
+            embedding_weight = get_embedding_W(len(train_vocabulary), train_token_to_index)
+            print('Start to assign initW to cnn.W')
+            sess.run(cnn.W.assign(embedding_weight))
         # end of assign pre-trained word2vec
 
 
